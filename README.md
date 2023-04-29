@@ -1,2 +1,2 @@
 # jogo-javascript-express
-jogo programado em javascript no express nodeJs
+jogo em javascript, framework express, nodeJs
