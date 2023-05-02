@@ -1385,7 +1385,7 @@ function encontrar(flag){//descobre index do objeto que corresponda a flag...
 		}
 	}
 }
-function achar(flag, status){
+function achar(flag, status){//arquivo player.js utiliza esta bagaça...
 	for (let i = sprites.length - 1; i >= 0; i--) {
 		if (sprites[i].flag == flag && (sprites[i].status == status || sprites[i].status == '' || sprites[i].status == null || sprites[i].status == 'game' || sprites[i].status == 'mapa' || sprites[i].status == 'grupo') ) {
 			return i;//

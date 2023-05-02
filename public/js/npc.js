@@ -47,7 +47,7 @@ function Npc(imgSrc, col, lin, flag){
 	this.desenha = function(){
 		if (this.exibir) {
 			//Obs: para ajustar escala foi preciso dividir .lar && .alt pela escala nas dimensões de .lar & .alt na captura do sprite
-			//P.s: a medida de escala tem de ser setada fixa no momento do load do sprite para mudar esta medida durante o jogo necessida excuir objeto do array sprites e inseri-lo novamente com a nova escala EX: sprites[achar('player')] = new Personagem()//com a nova escala;
+			//P.s: a medida de escala tem de ser setada fixa no momento do load do sprite para mudar esta medida durante o jogo necessida excuir objeto do array sprites e inseri-lo novamente com a nova escala EX: sprites[encontrar('player')] = new Personagem()//com a nova escala;
 			ctx.drawImage(this.img, this.srcX + this.grLar + this.lar/this.esc * this.frame, this.srcY + this.grAlt + this.alt/this.esc * this.direcao, this.lar/this.esc, this.alt/this.esc, this.posX, this.posY, this.lar, this.alt);// + this.lar * (this.esc + this.esc/2)
 		}		
 	}	
@@ -192,24 +192,24 @@ function Npc(imgSrc, col, lin, flag){
 					if (this.id == 'gp-indo-trampa' || this.id == 'gp-trampando' || this.id == 'gp-esquina') {
 
 
-						if (this.id == 'gp-indo-trampa' && colide(this, sprites[achar('player')])) {
+						if (this.id == 'gp-indo-trampa' && colide(this, sprites[encontrar('player')])) {
 							//esta tocando o player
 							console.log('vai lá daqui a pouco me pegar amor..?');						
 						}
-						if (this.id == 'gp-trampando' && colide(this, sprites[achar('player')])) {
+						if (this.id == 'gp-trampando' && colide(this, sprites[encontrar('player')])) {
 							console.log('boquetinho R$ 10 paus, completinha R$ 50 mangos');
 						}
 					
 
 
 					}else{//						
-						bloqueando(sprites[achar('player')], this);
+						bloqueando(sprites[encontrar('player')], this);
 					}
 					
 				}
 				if (this.txt == 'nocaoProfundidade') {//simular profundidade, copa das arvores e moitas...
 					//posy em que player dispara evento que muda this.exibir.. simular profundidade
-					if (sprites[achar('player')].gpsY - this.deslocaY < this.worldY && colide(this, sprites[achar('player')])) {
+					if (sprites[encontrar('player')].gpsY - this.deslocaY < this.worldY && colide(this, sprites[encontrar('player')])) {
 						this.exibir= true;
 						console.log('tocando em '+ this.id);
 						//console.log('exibir tá atraz de algo'+ this.gpsY +' , '+ this.worldX);

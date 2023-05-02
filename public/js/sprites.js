@@ -47,7 +47,7 @@ function Sprite(imgSrc, col, lin, flag){
 	this.desenha = function(){
 		if (this.exibir) {
 			//Obs: para ajustar escala foi preciso dividir .lar && .alt pela escala nas dimensões de .lar & .alt na captura do sprite
-			//P.s: a medida de escala tem de ser setada fixa no momento do load do sprite para mudar esta medida durante o jogo necessida excuir objeto do array sprites e inseri-lo novamente com a nova escala EX: sprites[achar('player')] = new Personagem()//com a nova escala;
+			//P.s: a medida de escala tem de ser setada fixa no momento do load do sprite para mudar esta medida durante o jogo necessida excuir objeto do array sprites e inseri-lo novamente com a nova escala EX: sprites[encontrar('player')] = new Personagem()//com a nova escala;
 			ctx.drawImage(this.img, this.srcX + this.grLar + this.lar/this.esc * this.frame, this.srcY + this.grAlt + this.alt/this.esc * this.direcao, this.lar/this.esc, this.alt/this.esc, this.posX, this.posY, this.lar, this.alt);// + this.lar * (this.esc + this.esc/2)
 		}		
 	}	
@@ -160,9 +160,9 @@ function Sprite(imgSrc, col, lin, flag){
 						this.taxaDimX /= 2;
 					}
 					//determinar posição final de background.srcX
-					//console.log(this.gpsX - metaWidth/2 < sprites[achar('background')].srcX);
-					if (this.gpsX - metaWidth/2 < sprites[achar('background')].srcX) {
-						//sprites[achar('background')].srcX+= this.taxaDimX;
+					//console.log(this.gpsX - metaWidth/2 < sprites[encontrar('background')].srcX);
+					if (this.gpsX - metaWidth/2 < sprites[encontrar('background')].srcX) {
+						//sprites[encontrar('background')].srcX+= this.taxaDimX;
 					}
 				}					
 				//..............................................................
@@ -181,8 +181,8 @@ function Sprite(imgSrc, col, lin, flag){
 						this.taxaDimY /= 2;
 					}
 					//determinar posição final de background.srcY
-					if (this.gpsY - metaHeight/2 < sprites[achar('background')].srcY) {
-						//sprites[achar('background')].srcY+= taxaDimY;
+					if (this.gpsY - metaHeight/2 < sprites[encontrar('background')].srcY) {
+						//sprites[encontrar('background')].srcY+= taxaDimY;
 					}
 				}
 				//...............................................................
@@ -213,32 +213,32 @@ function Sprite(imgSrc, col, lin, flag){
 				let limDown = cnv.height * 0.6;
 				//acelerador
 					let acelerador = 1;
-					if (sprites[achar('player')].posX - metaWidth*.75 >  this.srcX || sprites[achar('player')].posY - metaHeight*.75 >  this.srcY) {
+					if (sprites[encontrar('player')].posX - metaWidth*.75 >  this.srcX || sprites[encontrar('player')].posY - metaHeight*.75 >  this.srcY) {
 						if(sprites == world){
 							acelerador = 5;
 						}						
 						//console.log('acelerar');
 					}
 				//
-				if (limLeft > sprites[achar('player')].posX && this.srcX > 0) {
+				if (limLeft > sprites[encontrar('player')].posX && this.srcX > 0) {
 					//console.log('chegou ao limite esquerdo...');
 					//acelerar conforme distancia
-					this.srcX-= sprites[achar('player')].speed * acelerador;
-					sprites[achar('player')].posX+= sprites[achar('player')].speed * acelerador;
+					this.srcX-= sprites[encontrar('player')].speed * acelerador;
+					sprites[encontrar('player')].posX+= sprites[encontrar('player')].speed * acelerador;
 				}
-				if (limRight < sprites[achar('player')].posX + sprites[achar('player')].lar && this.srcX < this.lar - cnv.width) {
+				if (limRight < sprites[encontrar('player')].posX + sprites[encontrar('player')].lar && this.srcX < this.lar - cnv.width) {
 					//console.log('chegou ao limite direito...'+ this.srcX);
-					this.srcX+= sprites[achar('player')].speed * acelerador;
-					sprites[achar('player')].posX-= sprites[achar('player')].speed * acelerador;
+					this.srcX+= sprites[encontrar('player')].speed * acelerador;
+					sprites[encontrar('player')].posX-= sprites[encontrar('player')].speed * acelerador;
 				}
-				//console.log('limDown: '+ limDown +' / '+ sprites[achar('player')].posY);
-				if (limUp > sprites[achar('player')].posY && this.srcY > 0) {
-					this.srcY -= sprites[achar('player')].speed * acelerador;
-					sprites[achar('player')].posY+= sprites[achar('player')].speed * acelerador;
+				//console.log('limDown: '+ limDown +' / '+ sprites[encontrar('player')].posY);
+				if (limUp > sprites[encontrar('player')].posY && this.srcY > 0) {
+					this.srcY -= sprites[encontrar('player')].speed * acelerador;
+					sprites[encontrar('player')].posY+= sprites[encontrar('player')].speed * acelerador;
 				}
-				if (limDown < sprites[achar('player')].posY + sprites[achar('player')].alt && this.srcY < this.alt - cnv.height) {
-					this.srcY += sprites[achar('player')].speed * acelerador;
-					sprites[achar('player')].posY-= sprites[achar('player')].speed * acelerador;
+				if (limDown < sprites[encontrar('player')].posY + sprites[encontrar('player')].alt && this.srcY < this.alt - cnv.height) {
+					this.srcY += sprites[encontrar('player')].speed * acelerador;
+					sprites[encontrar('player')].posY-= sprites[encontrar('player')].speed * acelerador;
 				}
 			}else{
 				//em processo de aumento ou diminuição da tela
@@ -250,14 +250,14 @@ function Sprite(imgSrc, col, lin, flag){
 			}
 		}
 		if (this.flag == 'nuvem') {//quando nuvem chega ao final da tela
-			if (this.posX > sprites[achar('background')].img.width) {
+			if (this.posX > sprites[encontrar('background')].img.width) {
 				this.posX = this.lar * -1;
 				this.posY = Math.floor((Math.random() * 3100) + 1);
 			}else{
 				this.posX += this.speed;
 			}
 			//exibir somente no mapa
-			if (sprites[achar('background')].status == 'mapa') {
+			if (sprites[encontrar('background')].status == 'mapa') {
 				this.exibir = true;
 			}else{
 				this.exibir = false;
@@ -267,9 +267,9 @@ function Sprite(imgSrc, col, lin, flag){
 			if (this.id == 'ovni') {//obs: .txt = 'naveMae' , só é exibido no mapa igual a nuvem??? sera que ainda é funcional pois isto foi mudado por arrays diferentes...
 				//console.log('id = ovini '+ this.worldX);
 				//toda vez que ovni toca extremidades do mapa sorteia nova rota
-					if (this.worldX > sprites[achar('background')].lar || this.worldX + this.lar < 0 || this.worldY < 0) {						
+					if (this.worldX > sprites[encontrar('background')].lar || this.worldX + this.lar < 0 || this.worldY < 0) {						
 						//console.log('saiu do mapa....'+ this.etc);
-						if (this.worldX > sprites[achar('background')].lar) {
+						if (this.worldX > sprites[encontrar('background')].lar) {
 							if (this.status == 'moveRight') {
 								this.status = 'moveLeft';
 								//console.log('saiu a direita'+ this.worldX);							
@@ -314,7 +314,7 @@ function Sprite(imgSrc, col, lin, flag){
 							
 						}
 						//sorteia nova posição em y e speed = altura e velocidade....
-						this.worldY = Math.floor((Math.random() * sprites[achar('background')].alt) + 1);
+						this.worldY = Math.floor((Math.random() * sprites[encontrar('background')].alt) + 1);
 						this.speed = Math.floor((Math.random() * 5) + 1);//afeta velocidade speed...???
 					}
 				//passaros ajustar metaX,Y dos segueLider
@@ -364,11 +364,11 @@ function Sprite(imgSrc, col, lin, flag){
 				//
 				if (!this.acima) {//elemento esta no chão e ñ acima do player bloqueia ou empurra
 					
-					bloqueando(sprites[achar('player')], this);								
+					bloqueando(sprites[encontrar('player')], this);								
 				}
 				if (this.txt == 'nocaoProfundidade') {//simular profundidade, copa das arvores e moitas...
 					//posy em que player dispara evento que muda this.exibir.. simular profundidade
-					if (sprites[achar('player')].gpsY - this.deslocaY < this.worldY && colide(this, sprites[achar('player')])) {
+					if (sprites[encontrar('player')].gpsY - this.deslocaY < this.worldY && colide(this, sprites[encontrar('player')])) {
 						this.exibir= true;
 						console.log('tocando em '+ this.id);
 						//console.log('exibir tá atraz de algo'+ this.gpsY +' , '+ this.worldX);
@@ -503,7 +503,7 @@ function Sprite(imgSrc, col, lin, flag){
 		//btn.....
 		if (this.etc == 'up-right') {
 			//console.log('botão up-right...');
-			if (sprites[achar('background')].status == 'mapa') {
+			if (sprites[encontrar('background')].status == 'mapa') {
 				//	
 				this.esc = .3;
 				this.lar = (this.img.width / this.col) * this.esc;
@@ -555,7 +555,7 @@ function bloqueando(p1, p2){//(personagem, objeto)
 				if (p2.id == 'porta') {
 					console.log('entrou '+ p2.txt);
 					//aqui muda de fase....					
-					sprites[achar('player')].fase = p2.txt;					
+					sprites[encontrar('player')].fase = p2.txt;					
 				}
 			} else {
 				p1.posY -= overlapy;
@@ -564,7 +564,7 @@ function bloqueando(p1, p2){//(personagem, objeto)
 				if (p2.id == 'porta') {
 					console.log('saiu '+ p2.txt);
 					//aqui muda de fase....					
-					sprites[achar('player')].fase = p2.txt;					
+					sprites[encontrar('player')].fase = p2.txt;					
 				}
 			}
 		} else { // colisão pelos lados esquerda ou direita
@@ -659,9 +659,9 @@ function Texto(txt, lin, col, status){
 			this.txt = 'Help: M = mapa , 0 = help.html';
 		}
 		if (this.status == 'gpsPlayer') {
-			//this.txt = 'cnvX: '+ sprites[achar('player')].meiox() +' .... cnvY: '+ sprites[achar('player')].meioy() + '    //////////    backX: '+sprites[encontrar('background')].srcX +' .... backY: '+sprites[encontrar('background')].srcY;
+			//this.txt = 'cnvX: '+ sprites[encontrar('player')].meiox() +' .... cnvY: '+ sprites[encontrar('player')].meioy() + '    //////////    backX: '+sprites[encontrar('background')].srcX +' .... backY: '+sprites[encontrar('background')].srcY;
 			
-			this.txt = 'WORLD POSITION  horizontal X: '+ sprites[achar('player')].gpsX +' .... vertical Y: '+ sprites[achar('player')].gpsY;
+			this.txt = 'WORLD POSITION  horizontal X: '+ sprites[encontrar('player')].gpsX +' .... vertical Y: '+ sprites[encontrar('player')].gpsY;
 		}		
 	}
 }

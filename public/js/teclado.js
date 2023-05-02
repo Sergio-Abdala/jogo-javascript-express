@@ -10,28 +10,28 @@ window.addEventListener("keyup", keyupHandler, false);
 function keydownHandler(e){	
 	switch(e.keyCode){
 		case RIGHT:
-			sprites[achar('player')].movRight = true;
-			sprites[achar('player')].movLeft = false;
-			//sprites[achar('player')].movUp = false;
-			//sprites[achar('player')].movDown = false;
+			sprites[encontrar('player')].movRight = true;
+			sprites[encontrar('player')].movLeft = false;
+			//sprites[encontrar('player')].movUp = false;
+			//sprites[encontrar('player')].movDown = false;
 		break;
 		case LEFT:
-			sprites[achar('player')].movRight = false;
-			sprites[achar('player')].movLeft = true;
-			//sprites[achar('player')].movUp = false;
-			//sprites[achar('player')].movDown = false;
+			sprites[encontrar('player')].movRight = false;
+			sprites[encontrar('player')].movLeft = true;
+			//sprites[encontrar('player')].movUp = false;
+			//sprites[encontrar('player')].movDown = false;
 		break;
 		case UP:
 			//sprites[1].movRight = false;
 			//sprites[1].movLeft = false;
-			sprites[achar('player')].movUp = true;
-			sprites[achar('player')].movDown = false;
+			sprites[encontrar('player')].movUp = true;
+			sprites[encontrar('player')].movDown = false;
 		break;
 		case DOWN:
 			//sprites[1].movRight = false;
 			//sprites[1].movLeft = false;
-			sprites[achar('player')].movUp = false;
-			sprites[achar('player')].movDown = true;
+			sprites[encontrar('player')].movUp = false;
+			sprites[encontrar('player')].movDown = true;
 		break;
 	}
 }
@@ -39,30 +39,30 @@ function keyupHandler(e){
 	//console.log(e.keyCode);
 	switch(e.keyCode){
 		case RIGHT:
-			sprites[achar('player')].frame = 1;
-			sprites[achar('player')].movRight = false;
+			sprites[encontrar('player')].frame = 1;
+			sprites[encontrar('player')].movRight = false;
 		break;
 		case LEFT:
-			sprites[achar('player')].frame = 1;
-			sprites[achar('player')].movLeft = false;
+			sprites[encontrar('player')].frame = 1;
+			sprites[encontrar('player')].movLeft = false;
 		break;
 		case UP:
-			sprites[achar('player')].frame = 1;
-			sprites[achar('player')].movUp = false;
+			sprites[encontrar('player')].frame = 1;
+			sprites[encontrar('player')].movUp = false;
 		break;
 		case DOWN:
-			sprites[achar('player')].frame = 1;
-			sprites[achar('player')].movDown = false;
+			sprites[encontrar('player')].frame = 1;
+			sprites[encontrar('player')].movDown = false;
 		break;
 		case 32: //barra de espaço
 			
 		break;
 		case 33://pag up
-			sprites[achar('player')].esc+= 0.2;
+			sprites[encontrar('player')].esc+= 0.2;
 		break;
 		case 34://pag down
-			if (sprites[achar('player')].esc > 1) {
-				sprites[achar('player')].esc-= 0.2;
+			if (sprites[encontrar('player')].esc > 1) {
+				sprites[encontrar('player')].esc-= 0.2;
 			}			
 		break;
 		case 48: // 0 numero...			
@@ -70,44 +70,42 @@ function keyupHandler(e){
 			window.open("help.html")
 		break;
 		case 49: // 1 numero...			
-			sprites[achar('player')].grCol = 0;
-			sprites[achar('player')].grLin = 0;
+			sprites[encontrar('player')].grCol = 0;
+			sprites[encontrar('player')].grLin = 0;
 		break;
 		case 50: // 2 numero...			
-			sprites[achar('player')].grCol = 1;
-			sprites[achar('player')].grLin = 0;
+			sprites[encontrar('player')].grCol = 1;
+			sprites[encontrar('player')].grLin = 0;
 		break;
 		case 51: // 3 numero...
-			sprites[achar('player')].grCol = 2;
-			sprites[achar('player')].grLin = 0;
+			sprites[encontrar('player')].grCol = 2;
+			sprites[encontrar('player')].grLin = 0;
 		break;
 		case 52: // 4 numero...
-			sprites[achar('player')].grCol = 3;
-			sprites[achar('player')].grLin = 0;
+			sprites[encontrar('player')].grCol = 3;
+			sprites[encontrar('player')].grLin = 0;
 		break;
 		case 53: // 5 numero...
-			sprites[achar('player')].grCol = 0;
-			sprites[achar('player')].grLin = 1;
+			sprites[encontrar('player')].grCol = 0;
+			sprites[encontrar('player')].grLin = 1;
 		break;
 		case 54: // 6 numero...
-			sprites[achar('player')].grCol = 1;
-			sprites[achar('player')].grLin = 1;
+			sprites[encontrar('player')].grCol = 1;
+			sprites[encontrar('player')].grLin = 1;
 		break;
 		case 55: // 7 numero...
-			sprites[achar('player')].grCol = 2;
-			sprites[achar('player')].grLin = 1;
+			sprites[encontrar('player')].grCol = 2;
+			sprites[encontrar('player')].grLin = 1;
 		break;
 		case 56: // 8 numero...
-			sprites[achar('player')].grCol = 3;
-			sprites[achar('player')].grLin = 1;
+			sprites[encontrar('player')].grCol = 3;
+			sprites[encontrar('player')].grLin = 1;
 		break;
 		case 57: // 9 numero...
 			console.log('numero 9 <==> teclado...' );
 		break;
 		case 72: // h letra...
 			console.log('letra h <==> teclado...' );
-			//achar('txt', 'gpsMouse').status = 'help';
-			//sprites[achar('txt', 'gpsMouse')].status = 'help';
 			for (let i = sprites.length - 1; i >= 0; i--) {
 				if (sprites[i].status == 'oculto' && sprites[i].flag == 'txt') {
 					sprites[i].status = 'help';

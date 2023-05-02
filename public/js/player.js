@@ -41,7 +41,7 @@ function Player(imgSrc, col, lin, flag){
 	this.desenha = function(){
 		if (this.exibir) {
 			//Obs: para ajustar escala foi preciso dividir .lar && .alt pela escala nas dimensões de .lar & .alt na captura do sprite
-			//P.s: a medida de escala tem de ser setada fixa no momento do load do sprite para mudar esta medida durante o jogo necessida excuir objeto do array sprites e inseri-lo novamente com a nova escala EX: sprites[achar('player')] = new Player()//com a nova escala;
+			//P.s: a medida de escala tem de ser setada fixa no momento do load do sprite para mudar esta medida durante o jogo necessida excuir objeto do array sprites e inseri-lo novamente com a nova escala EX: sprites[encontrar('player')] = new Player()//com a nova escala;
 			ctx.drawImage(this.img, this.srcX + this.grLar + this.lar/this.esc * this.frame, this.srcY + this.grAlt + this.alt/this.esc * this.direcao, this.lar/this.esc, this.alt/this.esc, this.posX, this.posY, this.lar, this.alt);// + this.lar * (this.esc + this.esc/2)
 		}		
 	}	
@@ -54,7 +54,7 @@ function Player(imgSrc, col, lin, flag){
             let porcentPlayerY = this.meioy() / cnv.height;
                 let difX = porcentMouseX - porcentPlayerX;
                 let difY = porcentMouseY - porcentPlayerY;
-                if (sprites[achar('player')].fase !== 'ceu') {
+                if (sprites[encontrar('player')].fase !== 'ceu') {
                     this.metaHorizontal = (6 * -1) + parseInt(cnv.width * difX + this.posX + sprites[encontrar('background')].srcX) + this.lar/2;
                     this.metaVertical = (6 * -1) + parseInt(cnv.height * difY + this.posY + sprites[encontrar('background')].srcY) + this.alt/2;
 
