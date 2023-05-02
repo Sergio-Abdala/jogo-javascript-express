@@ -1369,7 +1369,7 @@ function muro05(x, y){
 				//console.log('worldX: '+ world[world.length-1].worldX + ' , worldY: '+ world[world.length-1].worldY);
 		////////////////////////////////////////////////////
 }
-function player(){//substituir por achar
+function player(){//substituir por achar, decidi usar a função encontrar, sendo assim isto ficou obsoleto eliminar do codigo
 	//descobre qual obj do array é o player
 	for (let i = sprites.length - 1; i >= 0; i--) {
 		if (sprites[i].flag == 'player') {
@@ -1377,8 +1377,8 @@ function player(){//substituir por achar
 		}
 	}
 }
-function encontrar(flag){//substituir por achar
-	//descobre qual obj do array é o player
+function encontrar(flag){//descobre index do objeto que corresponda a flag...
+	//descobre qual obj do array tem a flag correspondente, avaliar para flag's identicas???
 	for (let i = sprites.length - 1; i >= 0; i--) {
 		if (sprites[i].flag == flag) {
 			return i;
@@ -1393,49 +1393,49 @@ function achar(flag, status){
 	}
 }
 function loop(){
-	if (sprites[achar('player')].fase == 'world' && sprites !== world) {
+	if (sprites[encontrar('player')].fase == 'world' && sprites !== world) {
 		sprites = world;
-		sprites[achar('background')].srcX = srcXtela;
-		sprites[achar('background')].srcY = srcYtela;
-		sprites[achar('player')].posX = posXrua;
-		sprites[achar('player')].posY = posYrua + sprites[achar('player')].alt;
-		sprites[achar('background')].taxaAumenX = 64;
-		sprites[achar('background')].taxaAumenY = 64;
-		sprites[achar('background')].taxaDimX = 64;
-		sprites[achar('background')].taxaDimY = 64;
+		sprites[encontrar('background')].srcX = srcXtela;
+		sprites[encontrar('background')].srcY = srcYtela;
+		sprites[encontrar('player')].posX = posXrua;
+		sprites[encontrar('player')].posY = posYrua + sprites[encontrar('player')].alt;
+		sprites[encontrar('background')].taxaAumenX = 64;
+		sprites[encontrar('background')].taxaAumenY = 64;
+		sprites[encontrar('background')].taxaDimX = 64;
+		sprites[encontrar('background')].taxaDimY = 64;
 		metaWidth = telaX;
 		metaHeight = telaY;
 		//
 	}
-	if (sprites[achar('player')].fase == 'ceu' && sprites !== ceu) {
+	if (sprites[encontrar('player')].fase == 'ceu' && sprites !== ceu) {
 		sprites = ceu;
 	}
-	if (sprites[achar('player')].fase == 'fase01' && sprites !== fase01) {
-		srcXtela = sprites[achar('background')].srcX;
-		srcYtela = sprites[achar('background')].srcY;
-		posXrua = sprites[achar('player')].posX;
-		posYrua = sprites[achar('player')].posY;
+	if (sprites[encontrar('player')].fase == 'fase01' && sprites !== fase01) {
+		srcXtela = sprites[encontrar('background')].srcX;
+		srcYtela = sprites[encontrar('background')].srcY;
+		posXrua = sprites[encontrar('player')].posX;
+		posYrua = sprites[encontrar('player')].posY;
 		sprites = fase01;
-		sprites[achar('background')].srcY = 100;
-		sprites[achar('background')].taxaDimX = 64;
-		metaWidth = sprites[achar('background')].img.width;
-		sprites[achar('background')].taxaDimY = 64;
-		metaHeight = sprites[achar('background')].img.height - 100;
-		sprites[achar('player')].posX = 465;
-		sprites[achar('player')].posY = 280;
+		sprites[encontrar('background')].srcY = 100;
+		sprites[encontrar('background')].taxaDimX = 64;
+		metaWidth = sprites[encontrar('background')].img.width;
+		sprites[encontrar('background')].taxaDimY = 64;
+		metaHeight = sprites[encontrar('background')].img.height - 100;
+		sprites[encontrar('player')].posX = 465;
+		sprites[encontrar('player')].posY = 280;
 	}
-	if (sprites[achar('player')].fase == 'bordel' && sprites !== bordel) {
-		srcXtela = sprites[achar('background')].srcX;
-		srcYtela = sprites[achar('background')].srcY;
-		posXrua = sprites[achar('player')].posX;
-		posYrua = sprites[achar('player')].posY;
+	if (sprites[encontrar('player')].fase == 'bordel' && sprites !== bordel) {
+		srcXtela = sprites[encontrar('background')].srcX;
+		srcYtela = sprites[encontrar('background')].srcY;
+		posXrua = sprites[encontrar('player')].posX;
+		posYrua = sprites[encontrar('player')].posY;
 		sprites = bordel;
-		sprites[achar('background')].srcY = sprites[achar('background')].img.height - cnv.height;
-		sprites[achar('background')].taxaDimX = 64;
-		metaWidth = sprites[achar('background')].img.width;
-		//cnv.height = sprites[achar('background')].img.height;
-		sprites[achar('player')].posX = 140;
-		sprites[achar('player')].posY = cnv.height - sprites[achar('player')].alt*2;
+		sprites[encontrar('background')].srcY = sprites[encontrar('background')].img.height - cnv.height;
+		sprites[encontrar('background')].taxaDimX = 64;
+		metaWidth = sprites[encontrar('background')].img.width;
+		//cnv.height = sprites[encontrar('background')].img.height;
+		sprites[encontrar('player')].posX = 140;
+		sprites[encontrar('player')].posY = cnv.height - sprites[encontrar('player')].alt*2;
 		
 	}
 	// limpar tela
@@ -1459,7 +1459,7 @@ function loop(){
 }
 function alternarMapa(){//quando aciona tecla muda status do background
 	if (sprites[encontrar('background')].status == 'mapa') {//muda para tela de jogo
-		sprites[achar('player')].fase = 'world';
+		sprites[encontrar('player')].fase = 'world';
 				metaWidth = telaX;
 				metaHeight = telaY;				
 				sprites[encontrar('background')].taxaDimX = 64;
@@ -1467,13 +1467,13 @@ function alternarMapa(){//quando aciona tecla muda status do background
 
 				sprites[encontrar('background')].status = '';
 	}else{//mostra todo mapa saindo da tela de jogo...
-		sprites[achar('player')].fase = 'ceu';
+		sprites[encontrar('player')].fase = 'ceu';
 		
 		metaWidth = sprites[encontrar('background')].img.width;//tamanho da tela exibida
 		metaHeight = sprites[encontrar('background')].img.height;
 		//ajusta player durante mudança do mapa aumenta / diminui tela
-		sprites[achar('player')].posX = sprites[achar('player')].posX + sprites[encontrar('background')].srcX;
-		sprites[achar('player')].posY = sprites[achar('player')].posY + sprites[encontrar('background')].srcY;
+		sprites[encontrar('player')].posX = sprites[encontrar('player')].posX + sprites[encontrar('background')].srcX;
+		sprites[encontrar('player')].posY = sprites[encontrar('player')].posY + sprites[encontrar('background')].srcY;
 		//
 		sprites[encontrar('background')].taxaCresX = 64;
 		sprites[encontrar('background')].taxaCresY = 64;
@@ -1500,7 +1500,7 @@ socket.on('player', obj => {
 		if(sprites[i].id == obj.id){
 			//console.log('jogador online: '+ obj.gpsX +' , '+obj.gpsY);			
 			achou = true;
-			if(sprites[achar('player')].fase == obj.fase){
+			if(sprites[encontrar('player')].fase == obj.fase){
 				sprites[i].acima = true;
 				sprites[i].alt = obj.alt;
 				sprites[i].col = obj.col;
@@ -1543,7 +1543,7 @@ socket.on('player', obj => {
 		}
 	}
 	//insere player online no array	
-	if(!achou && sprites[achar('player')].fase == obj.fase){
+	if(!achou && sprites[encontrar('player')].fase == obj.fase){
 		//alert('adicionado jogador online: '+ obj.id +' ...');
 		let playerOnline = new Npc('img/players.png', 12, 8, 'player');
 		playerOnline.alt = obj.alt;
