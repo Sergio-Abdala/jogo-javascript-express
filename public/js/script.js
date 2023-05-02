@@ -1369,14 +1369,6 @@ function muro05(x, y){
 				//console.log('worldX: '+ world[world.length-1].worldX + ' , worldY: '+ world[world.length-1].worldY);
 		////////////////////////////////////////////////////
 }
-function player(){//substituir por achar, decidi usar a função encontrar, sendo assim isto ficou obsoleto eliminar do codigo
-	//descobre qual obj do array é o player
-	for (let i = sprites.length - 1; i >= 0; i--) {
-		if (sprites[i].flag == 'player') {
-			return i;
-		}
-	}
-}
 function encontrar(flag){//descobre index do objeto que corresponda a flag...
 	//descobre qual obj do array tem a flag correspondente, avaliar para flag's identicas???
 	for (let i = sprites.length - 1; i >= 0; i--) {
